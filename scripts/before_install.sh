@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-#create our working directory if it doesnt exist
-DIR="/home/ubuntu/api"
-if [ -d "$DIR" ]; then
-  echo "${DIR} exists"
-else
-  echo "Creating ${DIR} directory"
-  mkdir ${DIR}
+# I want to make sure that the directory is clean and has nothing left over from
+# previous deployments. The servers auto scale so the directory may or may not
+# exist.
+if [ -d /home/ubuntu/api ]; then
+    rm -rf /home/ubuntu/api
 fi
+mkdir -vp /home/ubuntu/api
